@@ -40,6 +40,9 @@ class Home extends StatelessWidget {
     ),
   ];
 
+  final titleController = TextEditingController();
+  final ammountController = TextEditingController();
+
   Home({this.title});
 
   @override
@@ -67,14 +70,19 @@ class Home extends StatelessWidget {
                 children: [
                   TextField(
                     decoration: InputDecoration(labelText: 'Title'),
+                    controller: titleController,
                   ),
                   TextField(
                     decoration: InputDecoration(labelText: 'Ammount'),
+                    controller: ammountController,
                   ),
                   FlatButton(
                     child: Text('Add Transaction'),
                     textColor: Colors.purple,
-                    onPressed: () => {},
+                    onPressed: (){
+                      print(this.ammountController.text);
+                      print(this.titleController.text);
+                    },
                   ),
                 ],
               ),
