@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'transaction.dart';
 
 void main() {
   runApp(App());
@@ -22,8 +23,23 @@ class App extends StatelessWidget {
 }
 
 class Home extends StatelessWidget {
-  Home({this.title});
   final String title;
+  final List<Transaction> transactions = [
+    Transaction(
+      id: '1',
+      title: 'New shoes',
+      ammount: 124000,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: '2',
+      title: 'Groceries',
+      ammount: 300000,
+      date: DateTime.now(),
+    ),
+  ];
+
+  Home({this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -31,19 +47,45 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text(this.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'This a common text',
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            width: double.infinity,
+            child: Card(
+              child: Text('Chart!'),
+              color: Colors.amber,
+              elevation: 5,
             ),
-            Text(
-              'This is a headline4 text',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+          ),
+          Column(
+            children: transactions
+                .map(
+                  (tx) => Card(
+                    child: Row(
+                      children: [
+                        Container(
+                          child: Text(
+                            tx.ammount.toString(),
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              tx.title,
+                            ),
+                            Text(
+                              tx.date.toString(),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ],
       ),
     );
   }
