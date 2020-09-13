@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'transaction.dart';
-import 'package:intl/intl.dart';
+import 'widgets/UserTransactions.dart';
 
 void main() {
   runApp(App());
@@ -25,23 +24,6 @@ class App extends StatelessWidget {
 
 class Home extends StatelessWidget {
   final String title;
-  final List<Transaction> transactions = [
-    Transaction(
-      id: '1',
-      title: 'New shoes',
-      ammount: 124000,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: '2',
-      title: 'Groceries',
-      ammount: 300000,
-      date: DateTime.now(),
-    ),
-  ];
-
-  final titleController = TextEditingController();
-  final ammountController = TextEditingController();
 
   Home({this.title});
 
@@ -62,80 +44,7 @@ class Home extends StatelessWidget {
               elevation: 10,
             ),
           ),
-          Card(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  TextField(
-                    decoration: InputDecoration(labelText: 'Title'),
-                    controller: titleController,
-                  ),
-                  TextField(
-                    decoration: InputDecoration(labelText: 'Ammount'),
-                    controller: ammountController,
-                  ),
-                  FlatButton(
-                    child: Text('Add Transaction'),
-                    textColor: Colors.purple,
-                    onPressed: (){
-                      print(this.ammountController.text);
-                      print(this.titleController.text);
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Column(
-            children: transactions
-                .map(
-                  (tx) => Card(
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 15,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(
-                              color: Colors.purple,
-                              width: 2,
-                            ),
-                          ),
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            '\$${tx.ammount}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 13,
-                              color: Colors.purple,
-                            ),
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              tx.title,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            Text(
-                              DateFormat.yMMMd().format(tx.date),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                )
-                .toList(),
-          ),
+          UserTransactions(),
         ],
       ),
     );
