@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'transaction.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(App());
@@ -55,7 +56,7 @@ class Home extends StatelessWidget {
             child: Card(
               child: Text('Chart!'),
               color: Colors.amber,
-              elevation: 5,
+              elevation: 10,
             ),
           ),
           Column(
@@ -78,10 +79,10 @@ class Home extends StatelessWidget {
                           ),
                           padding: EdgeInsets.all(10),
                           child: Text(
-                            tx.ammount.toString(),
+                            '\$${tx.ammount}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                              fontSize: 13,
                               color: Colors.purple,
                             ),
                           ),
@@ -96,7 +97,7 @@ class Home extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              tx.date.toString(),
+                              DateFormat.yMMMd().format(tx.date),
                             ),
                           ],
                         )
