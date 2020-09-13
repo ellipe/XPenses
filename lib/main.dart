@@ -33,19 +33,21 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text(this.title),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            child: Card(
-              child: Text('Chart!'),
-              color: Colors.amber,
-              elevation: 10,
+      body: SingleChildScrollView(
+              child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              child: Card(
+                child: Text('Chart!'),
+                color: Colors.amber,
+                elevation: 10,
+              ),
             ),
-          ),
-          UserTransactions(),
-        ],
+            UserTransactions(),
+          ],
+        ),
       ),
     );
   }
