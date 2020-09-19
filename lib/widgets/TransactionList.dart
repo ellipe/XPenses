@@ -19,7 +19,7 @@ class TransactionList extends StatelessWidget {
                 itemBuilder: (ctx, idx) {
                   return TransactionItem(
                     transactions[idx].title,
-                    transactions[idx].ammount,
+                    transactions[idx].amount,
                     transactions[idx].date,
                   );
                 },

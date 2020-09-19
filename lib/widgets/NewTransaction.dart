@@ -11,17 +11,17 @@ class NewTransaction extends StatefulWidget {
 
 class _NewTransactionState extends State<NewTransaction> {
   final titleController = TextEditingController();
-  final ammountController = TextEditingController();
+  final amountController = TextEditingController();
 
   void submitData() {
     final title = titleController.text;
-    final ammount = ammountController.text.isNotEmpty
-        ? double.parse(ammountController.text)
+    final amount = amountController.text.isNotEmpty
+        ? double.parse(amountController.text)
         : 0;
-    if (title.isEmpty || ammount <= 0) {
+    if (title.isEmpty || amount <= 0) {
       return;
     }
-    widget.addTransaction(title, ammount);
+    widget.addTransaction(title, amount);
 
     Navigator.of(context).pop();
   }
@@ -42,8 +42,8 @@ class _NewTransactionState extends State<NewTransaction> {
               onSubmitted: (_) => submitData(),
             ),
             TextField(
-              decoration: InputDecoration(labelText: 'Ammount'),
-              controller: ammountController,
+              decoration: InputDecoration(labelText: 'amount'),
+              controller: amountController,
               keyboardType: TextInputType.numberWithOptions(
                 decimal: true,
               ),

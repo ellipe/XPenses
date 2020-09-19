@@ -3,10 +3,10 @@ import 'package:intl/intl.dart';
 
 class TransactionItem extends StatelessWidget {
   final String txTitle;
-  final double txAmmount;
+  final double txAmount;
   final DateTime txDate;
 
-  TransactionItem(this.txTitle, this.txAmmount, this.txDate);
+  TransactionItem(this.txTitle, this.txAmount, this.txDate);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class TransactionItem extends StatelessWidget {
           ),
           padding: EdgeInsets.all(10),
           child: Text(
-            '\$$txAmmount',
+            '\$$txAmount',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 13,
