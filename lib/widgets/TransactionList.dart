@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/TransactionModel.dart';
 
 import './TransactionItem.dart';
+import './PlaceholderMessage.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
@@ -12,15 +13,17 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 400,
-        child: ListView.builder(
-          itemBuilder: (ctx, idx) {
-            return TransactionItem(
-              transactions[idx].title,
-              transactions[idx].ammount,
-              transactions[idx].date,
-            );
-          },
-          itemCount: transactions.length,
-        ));
+        child: transactions.isEmpty
+            ? PlaceholderMessage()
+            : ListView.builder(
+                itemBuilder: (ctx, idx) {
+                  return TransactionItem(
+                    transactions[idx].title,
+                    transactions[idx].ammount,
+                    transactions[idx].date,
+                  );
+                },
+                itemCount: transactions.length,
+              ));
   }
 }

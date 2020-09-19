@@ -52,24 +52,24 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final List<Transaction> _userTransactions = [
-    Transaction(
-      id: '1',
-      title: 'New shoes',
-      ammount: 200000,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: '2',
-      title: 'Groceries',
-      ammount: 300000,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: '3',
-      title: 'Video Games',
-      ammount: 230,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   id: '1',
+    //   title: 'New shoes',
+    //   ammount: 200000,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: '2',
+    //   title: 'Groceries',
+    //   ammount: 300000,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: '3',
+    //   title: 'Video Games',
+    //   ammount: 230,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   void _addNewTransaction(String title, double ammount) {
@@ -106,7 +106,7 @@ class _HomeState extends State<Home> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
               width: double.infinity,
