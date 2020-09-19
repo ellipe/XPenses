@@ -1,7 +1,8 @@
-import 'package:XPenses/models/TransactionModel.dart';
 import 'package:flutter/material.dart';
-import '../models/TransactionModel.dart';
 import 'package:intl/intl.dart';
+
+import '../models/TransactionModel.dart';
+import './CharBar.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> _recentTransactions;
@@ -11,20 +12,26 @@ class Chart extends StatelessWidget {
   List<Map<String, Object>> get _groupedTransactionsValues {
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(Duration(days: index));
-      double totalSum = 0.0;
+      double _dailyAmount = 0.0;
 
       for (var i = 0; i < _recentTransactions.length; i++) {
         if (_recentTransactions[i].date.day == weekDay.day &&
             _recentTransactions[i].date.month == weekDay.month &&
             _recentTransactions[i].date.year == weekDay.year) {
-          totalSum += _recentTransactions[i].amount;
+          _dailyAmount += _recentTransactions[i].amount;
         }
       }
 
       return {
         'day': DateFormat.E().format(weekDay),
-        'amount': totalSum,
+        'amount': _dailyAmount,
       };
+    });
+  }
+
+  double get totalSpending {
+    return _groupedTransactionsValues.fold(0.0, (sum, item) {
+      return sum + item['amount'];
     });
   }
 
@@ -36,8 +43,10 @@ class Chart extends StatelessWidget {
       elevation: 6,
       margin: EdgeInsets.all(20),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: _groupedTransactionsValues.map((tx){
-          return Text('${tx['day']}: ${tx['amount']}');
+          return Flexible(fit: FlexFit.tight,
+          child: CharBart(tx['day'], tx['amount'], totalSpending == 0.0 ? 0 : ( tx['amount'] as double) / totalSpending),);
         }).toList(),
       ),
     );

@@ -5,6 +5,7 @@ class TransactionItem extends StatelessWidget {
   final String txTitle;
   final double txAmount;
   final DateTime txDate;
+  final f = new NumberFormat.compact();
 
   TransactionItem(this.txTitle, this.txAmount, this.txDate);
 
@@ -26,7 +27,7 @@ class TransactionItem extends StatelessWidget {
           ),
           padding: EdgeInsets.all(10),
           child: Text(
-            '\$$txAmount',
+            '\$${f.format(txAmount)}',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 13,
