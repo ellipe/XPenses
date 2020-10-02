@@ -14,7 +14,13 @@ class CharBart extends StatelessWidget {
     return Column(
       children: [
         FittedBox(
-          child: Text('\$${f.format(spendingAmount)}'),
+          child: Text(
+            '\$${f.format(spendingAmount)}',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 13,
+            ),
+          ),
         ),
         SizedBox(
           height: 4,
@@ -49,7 +55,10 @@ class CharBart extends StatelessWidget {
         SizedBox(
           height: 4,
         ),
-        Text(label)
+        Text(label,
+            style: TextStyle(
+              color: Colors.grey,
+            ))
       ],
     );
   }

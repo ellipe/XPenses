@@ -37,11 +37,9 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
-  print(_groupedTransactionsValues);
     return Card(
       elevation: 6,
-      margin: EdgeInsets.all(20),
+      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: _groupedTransactionsValues.map((tx){

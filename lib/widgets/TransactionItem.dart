@@ -12,42 +12,38 @@ class TransactionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Row(children: [
-        Container(
-          margin: EdgeInsets.symmetric(
-            vertical: 10,
-            horizontal: 15,
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6),
-            border: Border.all(
-              color: Theme.of(context).primaryColor,
-              width: 2,
-            ),
-          ),
-          padding: EdgeInsets.all(10),
-          child: Text(
-            '\$${f.format(txAmount)}',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 13,
-              color: Theme.of(context).primaryColor,
+      margin: EdgeInsets.symmetric(
+        vertical: 8,
+        horizontal: 10,
+      ),
+      elevation: 5,
+      child: ListTile(
+        leading: CircleAvatar(
+          radius: 30,
+          child: Padding(
+            padding: EdgeInsets.all(6),
+            child: FittedBox(
+              child: Text(
+                '\$${f.format(txAmount)}',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                ),
+              ),
             ),
           ),
         ),
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(
-            txTitle,
-            style: Theme.of(context).textTheme.headline6,
+        title: Text(
+          txTitle,
+          style: Theme.of(context).textTheme.headline6,
+        ),
+        subtitle: Text(
+          DateFormat.yMMMd().format(txDate),
+          style: TextStyle(
+            color: Colors.grey,
           ),
-          Text(
-            DateFormat.yMMMd().format(txDate),
-            style: TextStyle(
-              color: Colors.grey,
-            ),
-          ),
-        ])
-      ]),
+        ),
+      ),
     );
   }
 }
