@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../models/TransactionModel.dart';
 
 class TransactionItem extends StatelessWidget {
-  final String txTitle;
-  final double txAmount;
-  final DateTime txDate;
   final f = new NumberFormat.compact();
 
-  TransactionItem(this.txTitle, this.txAmount, this.txDate);
+  final Transaction transaction;
+  final Function deleteTx;
+
+  TransactionItem({this.transaction, this.deleteTx});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class TransactionItem extends StatelessWidget {
             padding: EdgeInsets.all(6),
             child: FittedBox(
               child: Text(
-                '\$${f.format(txAmount)}',
+                '\$${f.format(transaction.amount)}',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 13,
@@ -34,14 +35,19 @@ class TransactionItem extends StatelessWidget {
           ),
         ),
         title: Text(
-          txTitle,
+          transaction.title,
           style: Theme.of(context).textTheme.headline6,
         ),
         subtitle: Text(
-          DateFormat.yMMMd().format(txDate),
+          DateFormat.yMMMd().format(transaction.date),
           style: TextStyle(
             color: Colors.grey,
           ),
+        ),
+        trailing: IconButton(
+          icon: Icon(Icons.delete),
+          onPressed: () => deleteTx(transaction.id),
+          color: Theme.of(context).errorColor,
         ),
       ),
     );

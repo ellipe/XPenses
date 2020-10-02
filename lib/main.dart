@@ -52,26 +52,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final List<Transaction> _userTransactions = [
-    // Transaction(
-    //   id: '1',
-    //   title: 'New shoes',
-    //   amount: 200000,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: '2',
-    //   title: 'Groceries',
-    //   amount: 300000,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: '3',
-    //   title: 'Video Games',
-    //   amount: 230,
-    //   date: DateTime.now(),
-    // ),
-  ];
+  final List<Transaction> _userTransactions = [];
 
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((tx) {
@@ -89,6 +70,14 @@ class _HomeState extends State<Home> {
 
     setState(() {
       _userTransactions.add(newTx);
+    });
+  }
+
+  void _deleteTransaction(String id){
+    setState(() {
+      _userTransactions.removeWhere((tx) {
+        return tx.id == id;
+      });
     });
   }
 
@@ -119,6 +108,7 @@ class _HomeState extends State<Home> {
             Chart(_recentTransactions),
             TransactionList(
               transactions: _userTransactions,
+              deleteTx: _deleteTransaction
             )
           ],
         ),
