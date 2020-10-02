@@ -13,12 +13,16 @@ class CharBart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FittedBox(
-          child: Text(
-            '\$${f.format(spendingAmount)}',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 13,
+        Container(
+          height: 16,
+          margin: EdgeInsets.only(top: 4),
+          child: FittedBox(
+            child: Text(
+              '\$${f.format(spendingAmount)}',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 13,
+              ),
             ),
           ),
         ),
@@ -55,10 +59,13 @@ class CharBart extends StatelessWidget {
         SizedBox(
           height: 4,
         ),
-        Text(label,
-            style: TextStyle(
-              color: Colors.grey,
-            ))
+        Container(
+          margin: EdgeInsets.only(bottom: 4),
+          child: Text(label,
+              style: TextStyle(
+                color: Colors.grey,
+              )),
+        )
       ],
     );
   }

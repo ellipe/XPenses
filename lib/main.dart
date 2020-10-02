@@ -74,17 +74,18 @@ class _HomeState extends State<Home> {
   ];
 
   List<Transaction> get _recentTransactions {
-    return _userTransactions.where((tx){
+    return _userTransactions.where((tx) {
       return tx.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
     }).toList();
   }
 
-  void _addNewTransaction(String title, double amount) {
+  void _addNewTransaction(String title, double amount, DateTime selectedDate) {
     final newTx = Transaction(
-        id: DateTime.now().toString(),
-        title: title,
-        amount: amount,
-        date: DateTime.now());
+      id: DateTime.now().toString(),
+      title: title,
+      amount: amount,
+      date: selectedDate,
+    );
 
     setState(() {
       _userTransactions.add(newTx);
