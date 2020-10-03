@@ -29,28 +29,29 @@ class CharBart extends StatelessWidget {
         SizedBox(
           height: 4,
         ),
-        Container(
-          height: 60,
-          width: 10,
-          child: Stack(
-            alignment: AlignmentDirectional.bottomStart,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(220, 220, 220, 1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              FractionallySizedBox(
-                heightFactor: spendingPercentageOfTotal,
-                child: Container(
+        Expanded(
+          child: Container(
+            width: 10,
+            child: Stack(
+              alignment: AlignmentDirectional.bottomStart,
+              children: [
+                Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
+                    color: Color.fromRGBO(220, 220, 220, 1),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-              )
-            ],
+                FractionallySizedBox(
+                  heightFactor: spendingPercentageOfTotal,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
         SizedBox(
