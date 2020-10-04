@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import './widgets/TransactionList.dart';
 import './widgets/NewTransaction.dart';
 import './models/TransactionModel.dart';
+import './customs/bottom_sheet_custom.dart';
 import './widgets/Chart.dart';
 
 void main() {
@@ -88,11 +89,15 @@ class _HomeState extends State<Home> {
   }
 
   void _showNewTransactionForm(BuildContext ctx) {
-    showModalBottomSheet(
-        context: ctx,
-        builder: (_) {
-          return NewTransaction(_addNewTransaction);
-        });
+    showModalCustomBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return FractionallySizedBox(
+          heightFactor: 0.55,
+          child: NewTransaction(_addNewTransaction),
+        );
+      },
+    );
   }
 
   @override
@@ -106,8 +111,9 @@ class _HomeState extends State<Home> {
         )
       ],
     );
-
-    final deductedHeight = appBar.preferredSize.height + MediaQuery.of(context).padding.top;
+    final mediaQuery = MediaQuery.of(context),
+        deductedHeight = appBar.preferredSize.height + mediaQuery.padding.top,
+        availableHeight = mediaQuery.size.height - deductedHeight;
 
     return Scaffold(
       appBar: appBar,
@@ -116,12 +122,12 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
-              height: (MediaQuery.of(context).size.height - deductedHeight) * 0.2,
-              child: Chart(
-              _recentTransactions,
-            )),
+                height: availableHeight * 0.2,
+                child: Chart(
+                  _recentTransactions,
+                )),
             Container(
-              height: (MediaQuery.of(context).size.height - deductedHeight) * 0.8,
+              height: availableHeight * 0.8,
               child: TransactionList(
                   transactions: _userTransactions,
                   deleteTx: _deleteTransaction),
