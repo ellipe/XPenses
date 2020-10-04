@@ -11,60 +11,66 @@ class CharBart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 16,
-          margin: EdgeInsets.only(top: 4),
-          child: FittedBox(
-            child: Text(
-              '\$${f.format(spendingAmount)}',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 13,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 4,
-        ),
-        Expanded(
-          child: Container(
-            width: 10,
-            child: Stack(
-              alignment: AlignmentDirectional.bottomStart,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(220, 220, 220, 1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                FractionallySizedBox(
-                  heightFactor: spendingPercentageOfTotal,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(10),
+    return LayoutBuilder(
+      builder: (ctx, contraints) {
+        final maxHeight = contraints.maxHeight - 8;
+        return Padding(
+          padding: const EdgeInsets.only(top: 4, bottom: 4,),
+          child: Column(
+            children: [
+              Container(
+                height: maxHeight * 0.15,
+                child: FittedBox(
+                  child: Text(
+                    '\$${f.format(spendingAmount)}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13,
                     ),
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+              SizedBox(
+                height: maxHeight * 0.05,
+              ),
+              Container(
+                height: maxHeight * 0.6,
+                width: 15,
+                child: Stack(
+                  alignment: AlignmentDirectional.bottomStart,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(220, 220, 220, 1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    FractionallySizedBox(
+                      heightFactor: spendingPercentageOfTotal,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: maxHeight * 0.05,
+              ),
+              Container(
+                height: maxHeight * 0.15,
+                child: Text(label,
+                    style: TextStyle(
+                      color: Colors.grey,
+                    )),
+              )
+            ],
           ),
-        ),
-        SizedBox(
-          height: 4,
-        ),
-        Container(
-          margin: EdgeInsets.only(bottom: 4),
-          child: Text(label,
-              style: TextStyle(
-                color: Colors.grey,
-              )),
-        )
-      ],
+        );
+      },
     );
   }
 }
